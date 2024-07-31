@@ -45,6 +45,11 @@ const Nav = ({ openNav }: Props) => {
           className="w-[1.5rem] lg:hidden h-[1.5rem] text-slate-900 cursor-pointer"
         />
       </div>
+      {/* Location pin and text for small screens */}
+      <div className="flex lg:hidden justify-center mt-4 text-gray-700">
+        <FiMapPin className="w-[1.5rem] h-[1.5rem] text-red-500" />
+        <span className="ml-1 text-[17px]">Sacramento, CA</span>
+      </div>
     </div>
   );
 };

@@ -30,8 +30,8 @@ const MobileNav = ({ nav, closeNav }: Props) => {
           <Link href="/">Blog</Link>
         </li>
         <li className="flex space-x-4 mt-10">
-          <ButtonBlue text="Admin Login" />
-          <ButtonRed text="Admin Sign Up" />
+          <ButtonBlue text="Login" />
+          <ButtonRed text="Sign Up" />
         </li>
       </ul>
     </div>
