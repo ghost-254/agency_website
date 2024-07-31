@@ -85,8 +85,8 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="w-[80%] mx-auto mt-[1rem] text-[15px] opacity-75">
-        Copyright © 2024 by Webdev Warriros
+      <div className="w-[80%] text-center mx-auto mt-[1rem] text-[15px] opacity-75">
+        Copyright © 2024 Outreach Connect | Sacramento, CA
       </div>
     </div>
   );

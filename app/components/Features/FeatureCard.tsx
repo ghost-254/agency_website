@@ -23,9 +23,6 @@ const FeatureCard = ({ image, title }: Props) => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, hic
         molestiae consequuntur expedita unde facere.
       </p>
-      <p className="mt-[1.4rem] text-red-600 font-[500] cursor-pointer hover:text-red-800">
-        Learn More
-      </p>
     </div>
   );
 };

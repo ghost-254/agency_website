@@ -1,28 +1,28 @@
 import React from "react";
 import ButtonBlue from "../Button/ButtonBlue";
 import ButtonRed from "../Button/ButtonRed";
-import HeroImg from "@/public/hero.svg";
 import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="h-[70vh] lg:h-[88vh] md:h-[80vh] sm:h-[75vh] flex items-center flex-col justify-center">
-      <div className="grid grid-cols-1 lg:grid-cols-5 items-center w-[80%] mx-auto">
-        <div className="col-span-2">
+    <div className="py-16 flex items-center justify-center bg-white">
+      <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-5 items-center gap-8">
+        <div className="lg:col-span-2 space-y-4">
           <h1
             data-aos="fade-right"
             className="text-[27px] md:text-[35px] lg:text-[40px] mb-[1rem] font-bold text-[#02073e] leading-[2.4rem] md:leading-[4rem]"
           >
-            Exploring Innovative Paths to Cultivate Your Business
+            Welcome to Outreach Connect
           </h1>
           <p
             data-aos="fade-left"
             data-aos-delay="200"
             className="md:text-[17px] text-[15px] mb-[2rem] text-black opacity-90 font-[400]"
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-            quidem, reprehenderit quae modi dolore illum eos rem perspiciatis
-            hic! Placeat?
+            We are dedicated to helping homeless and underserved individuals in our community.
+            We want to connect the resources to the people who need them by providing references, training, 
+            and support to empower the underserved in the community.
+            Your support can make a difference. Learn more about our programs and how you can help.
           </p>
           <div
             data-aos="zoom-in"
@@ -30,15 +30,21 @@ const Hero = () => {
             className="flex items-center space-x-4 md:space-x-6"
           >
             <ButtonBlue text="Get Started" />
-            <ButtonRed text="Explor Features" />
+            <ButtonRed text="Explore Features" />
           </div>
         </div>
         <div
           data-aos="fade-left"
-          data-aos-delay="600"
-          className="col-span-3 hidden sm:block"
+          data-aos-delay="500"
+          className="lg:col-span-3 lg:justify-self-end mt-4 lg:mt-0"
         >
-          <Image src={HeroImg} alt="Hero" />
+          <Image 
+            src="/homeless.jpeg" 
+            alt="Hero"
+            width={600}
+            height={300}
+            className="rounded-lg mx-auto lg:mx-0"
+          />
         </div>
       </div>
     </div>
