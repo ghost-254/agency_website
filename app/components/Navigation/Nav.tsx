@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import ButtonBlue from "../Button/ButtonBlue";
 import ButtonRed from "../Button/ButtonRed";
-import { Bars3BottomRightIcon } from "@heroicons/react/16/solid";
+import { FiMenu, FiMapPin } from "react-icons/fi"; // Import the FiMenu and FiMapPin icons
 
 interface Props {
   openNav: () => void;
@@ -17,8 +17,8 @@ const Nav = ({ openNav }: Props) => {
           <Image 
             src="/logo.png" 
             alt="Logo"
-            width={150} // adjust as needed
-            height={100} // adjust as needed
+            width={150} 
+            height={100}
           />
         </div>
         <ul className="hidden lg:flex items-center space-x-10">
@@ -29,19 +29,17 @@ const Nav = ({ openNav }: Props) => {
             <Link href="/">About</Link>
           </li>
           <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
-            <Link href="/">Services</Link>
-          </li>
-          <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
-            <Link href="/">Customer</Link>
-          </li>
-          <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
             <Link href="/">Blog</Link>
           </li>
         </ul>
         <div className="flex items-center space-x-2 md:space-x-5">
+          <div className="flex items-center space-x-1 text-[17px] text-gray-700">
+            <FiMapPin className="w-[1.5rem] h-[1.5rem] text-red-500" />
+            <span>Sacramento, CA</span>
+          </div>
           <ButtonBlue text="Login" />
           <ButtonRed text="Sign Up" />
-          <Bars3BottomRightIcon
+          <FiMenu
             onClick={openNav}
             className="w-[1.5rem] lg:hidden h-[1.5rem] text-slate-900 cursor-pointer"
           />
