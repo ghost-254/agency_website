@@ -3,7 +3,7 @@ import { FiMapPin } from "react-icons/fi";
 
 const Footer = () => {
   return (
-    <div className="font-mono text-gray-400 pt-[3rem] pb-[3rem] bg-green-700">
+    <div className="font-mono text-gray-400 pt-[3rem] pb-[3rem] bg-green-500">
       <div className="w-[80%] mx-auto grid grid-cols-1 border-b-[1.5px] border-b-slate-300 pb-[2rem] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[2rem] items-start">
         <div className="md:mx-auto mx-0">
           <h1 className="text-[17px] text-gray-900 font-semibold mb-[1.5rem] ">
@@ -68,8 +68,8 @@ const Footer = () => {
       </div>
       <div className="w-[80%] mx-auto mt-[1rem] flex flex-col items-center space-y-2">
         <div className="flex items-center space-x-1 text-[17px] text-gray-700">
-          <FiMapPin className="w-[1.5rem] h-[1.5rem] text-red-500" />
-          <span>Sacramento, CA</span>
+          <FiMapPin className="w-[1.5rem] h-[1.5rem] text-white" />
+          <span className="text-white">Sacramento, CA</span>
         </div>
         <div className="text-black text-center text-[15px] opacity-75">
           Copyright © 2024 Outreach Connect
