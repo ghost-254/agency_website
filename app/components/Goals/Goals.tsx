@@ -26,7 +26,7 @@ const Goals = () => {
           <p
             data-aos="fade-right"
             data-aos-anchor-placement="top-center"
-            data-aos-delay="400"
+            data-aos-delay="300"
             className="mt-[1.5rem] mb-[1.5rem] text-black opacity-90 text-[15px] md:text-[16px]"
           >
             Our goals focus on raising awareness, attracting grant providers, showcasing our impact, and facilitating communication. They are:
@@ -34,7 +34,7 @@ const Goals = () => {
           <div
             data-aos="fade-up"
             data-aos-anchor-placement="top-center"
-            data-aos-delay="600"
+            data-aos-delay="400"
             className="flex items-start mb-[1rem] space-x-3"
           >
             <FiCheckCircle className="w-[1.3rem] h-[1.3rem] text-green-600 flex-shrink-0" />
@@ -45,7 +45,7 @@ const Goals = () => {
           <div
             data-aos="fade-up"
             data-aos-anchor-placement="top-center"
-            data-aos-delay="800"
+            data-aos-delay="500"
             className="flex items-start mb-[1rem] space-x-3"
           >
             <FiCheckCircle className="w-[1.3rem] h-[1.3rem] text-green-600 flex-shrink-0" />
@@ -56,7 +56,7 @@ const Goals = () => {
           <div
             data-aos="fade-up"
             data-aos-anchor-placement="top-center"
-            data-aos-delay="1000"
+            data-aos-delay="600"
             className="flex items-start mb-[1rem] space-x-3"
           >
             <FiCheckCircle className="w-[1.3rem] h-[1.3rem] text-green-600 flex-shrink-0" />
@@ -67,7 +67,7 @@ const Goals = () => {
           <div
             data-aos="fade-up"
             data-aos-anchor-placement="top-center"
-            data-aos-delay="1200"
+            data-aos-delay="700"
             className="flex items-start mb-[1rem] space-x-3"
           >
             <FiCheckCircle className="w-[1.3rem] h-[1.3rem] text-green-600 flex-shrink-0" />

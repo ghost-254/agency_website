@@ -27,28 +27,28 @@ const Features = () => {
         </div>
         <div
           data-aos="zoom-in"
-          data-aos-delay="400"
+          data-aos-delay="300"
           data-aos-anchor-placement="top-center"
         >
           <FeatureCard title="Partnership Building" image={Icon3.src} />
         </div>
         <div
           data-aos="zoom-in"
-          data-aos-delay="600"
+          data-aos-delay="400"
           data-aos-anchor-placement="top-center"
         >
           <FeatureCard title="Educational Workshops and Seminars" image={Icon4.src} />
         </div>
         <div
           data-aos="zoom-in"
-          data-aos-delay="800"
+          data-aos-delay="500"
           data-aos-anchor-placement="top-center"
         >
           <FeatureCard title="Workforce Reentry Assistance" image={Icon5.src} />
         </div>
         <div
           data-aos="zoom-in"
-          data-aos-delay="1000"
+          data-aos-delay="600"
           data-aos-anchor-placement="top-center"
         >
           <FeatureCard title="HIV Testing Services" image={Icon2.src} />
