@@ -11,7 +11,7 @@ interface Props {
 
 const Nav = ({ openNav }: Props) => {
   return (
-    <div className="h-[25vh] bg-white shadow-md ">
+    <div className="h-[25vh] bg-white shadow-md">
       <div className="w-[85%] flex items-center justify-between mx-auto h-[23vh]">
         <div className="flex items-center">
           <Image 
@@ -32,18 +32,18 @@ const Nav = ({ openNav }: Props) => {
             <Link href="/">Blog</Link>
           </li>
         </ul>
-        <div className="flex items-center space-x-2 md:space-x-5">
+        <div className="hidden lg:flex items-center space-x-2 md:space-x-5">
           <div className="flex items-center space-x-1 text-[17px] text-gray-700">
             <FiMapPin className="w-[1.5rem] h-[1.5rem] text-red-500" />
             <span>Sacramento, CA</span>
           </div>
-          <ButtonBlue text="Login" />
-          <ButtonRed text="Sign Up" />
-          <FiMenu
-            onClick={openNav}
-            className="w-[1.5rem] lg:hidden h-[1.5rem] text-slate-900 cursor-pointer"
-          />
+          <ButtonBlue text="Admin Login" />
+          <ButtonRed text="Admin Sign Up" />
         </div>
+        <FiMenu
+          onClick={openNav}
+          className="w-[1.5rem] lg:hidden h-[1.5rem] text-slate-900 cursor-pointer"
+        />
       </div>
     </div>
   );
