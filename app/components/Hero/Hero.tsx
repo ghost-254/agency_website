@@ -1,6 +1,5 @@
 import React from "react";
 import ButtonBlue from "../Button/ButtonBlue";
-import ButtonRed from "../Button/ButtonRed";
 import Image from "next/image";
 
 const Hero = () => {
@@ -38,8 +37,8 @@ const Hero = () => {
           className="lg:col-span-3 lg:justify-self-end mt-4 lg:mt-0"
         >
           <Image 
-            src="/homeless.jpeg" 
-            alt="Hero"
+            src="/homelesschild.jpeg" 
+            alt="Homeless Child"
             width={600}
             height={300}
             className="rounded-lg mx-auto lg:mx-0"

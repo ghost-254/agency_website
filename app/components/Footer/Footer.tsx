@@ -1,22 +1,20 @@
 import React from "react";
 import { FiMapPin } from "react-icons/fi";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="font-mono text-gray-400 pt-[3rem] pb-[3rem] bg-green-500">
+    <div className="font-mono text-gray-400 pt-[3rem] pb-[3rem] bg-slate-300 px-0">
       <div className="w-[80%] mx-auto grid grid-cols-1 border-b-[1.5px] border-b-slate-300 pb-[2rem] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[2rem] items-start">
         <div className="md:mx-auto mx-0">
           <h1 className="text-[17px] text-gray-900 font-semibold mb-[1.5rem] ">
             Company
           </h1>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
-            Affiliations
+          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
+           <Link href="/disclaimer">Disclaimer</Link>
           </p>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
-            Careers & Culture
-          </p>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
-            Blog
+          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
+            <Link href="/data">Data</Link>
           </p>
         </div>
         
@@ -24,17 +22,11 @@ const Footer = () => {
           <h1 className="text-[17px] text-gray-900 font-semibold mb-[1.5rem] ">
             Essentials
           </h1>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
-            Disclaimer
+          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
+            <Link href="/about"> About</Link>
           </p>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
-            About Us
-          </p>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
-            Mission & Vision
-          </p>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
-            Popular Campaigns
+          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
+            <Link href="/mission_vision"> Mission & Vision</Link>
           </p>
         </div>
 
@@ -42,10 +34,12 @@ const Footer = () => {
           <h1 className="text-[17px] text-gray-900 font-semibold mb-[1.5rem] ">
             Contact Information
           </h1>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
-            Email: info@outreachconnect.org
+          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
+          Email: <Link href="mailto:official@outreachconnect.org">
+                  <span className="hover:text-blue-500">official@outreachconnect.org</span>
+                </Link>
           </p>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
+          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
             Phone: +1 (916) 212-9617
           </p>
         </div>
@@ -54,13 +48,13 @@ const Footer = () => {
           <h1 className="text-[17px] text-gray-900 font-semibold mb-[1.5rem] ">
             Social Media
           </h1>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
+          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
             Facebook
           </p>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
+          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
             Twitter
           </p>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-white">
+          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
             LinkedIn
           </p>
         </div>

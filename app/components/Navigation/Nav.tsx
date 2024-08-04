@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import ButtonBlue from "../Button/ButtonBlue";
 import ButtonRed from "../Button/ButtonRed";
-import { FiMenu, FiMapPin } from "react-icons/fi"; // Import the FiMenu and FiMapPin icons
+import { FiMenu, FiMapPin } from "react-icons/fi";
 
 interface Props {
   openNav: () => void;
@@ -17,7 +17,7 @@ const Nav = ({ openNav }: Props) => {
           <Image 
             src="/logo.png" 
             alt="Logo"
-            width={150} 
+            width={200} 
             height={100}
           />
         </div>
@@ -26,10 +26,10 @@ const Nav = ({ openNav }: Props) => {
             <Link href="/">Home</Link>
           </li>
           <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
-            <Link href="/">About</Link>
+            <Link href="/about">About</Link>
           </li>
           <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
-            <Link href="/">Blog</Link>
+            <Link href="/data">Data</Link>
           </li>
         </ul>
         <div className="hidden lg:flex items-center space-x-2 md:space-x-5">
