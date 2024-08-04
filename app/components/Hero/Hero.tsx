@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonBlue from "../Button/ButtonBlue";
 import Image from "next/image";
+import { Link } from 'react-scroll';
 
 const Hero = () => {
   return (
@@ -28,7 +29,9 @@ const Hero = () => {
             data-aos-delay="400"
             className="flex items-center space-x-4 md:space-x-6"
           >
-            <ButtonBlue text="Get in Touch" />
+            <Link to="supportTeam" smooth={true} duration={700}>
+              <ButtonBlue text="Get in Touch" />
+            </Link>
           </div>
         </div>
         <div

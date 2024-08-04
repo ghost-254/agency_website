@@ -18,7 +18,7 @@ const SupportTeam = () => {
   };
 
   return (
-    <div className="pt-[7rem] pb-[3rem]">
+    <div id="supportTeam" className="pt-[7rem] pb-[3rem]">
       <div className="w-[80%] mx-auto items-center grid grid-cols-1 lg:grid-cols-2 gap-[2rem] ">
         <div>
           <h1 className="text-[27px] md:text-[35px] lg:text-[40px] mb-[1rem] font-bold text-[#02073e] leading-[2.4rem] md:leading-[4rem]">

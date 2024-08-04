@@ -9,7 +9,7 @@ const Disclaimer: React.FC = () => {
           <FaExclamationTriangle className="text-red-600 text-4xl mr-2" />
           <h2 className="text-2xl font-semibold text-red-600">Disclaimer</h2>
         </div>
-        <p className="text-gray-700 mb-4">
+        <p className="text-gray-700 mb-4 text-left">
           The purpose of Outreachconnect.org is to raise awareness of the needs of the homeless. 
           There is no intent or reference to indicate that Outreachconnect.org is a provider of services. 
           Our aim is to educate the public, advocate for better support systems, and connect individuals with the resources they need. 

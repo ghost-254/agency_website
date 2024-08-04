@@ -1,19 +1,24 @@
-"use client";
+// components/Navigation/ResponsiveNav.tsx
+"use client"
 
-import React, { useState } from "react";
-import Nav from "./Nav";
-import MobileNav from "./MobileNav";
+import React, { useState } from 'react';
+import { FiMenu, FiMapPin } from 'react-icons/fi';
+import Nav from './Nav';
+import MobileNav from './MobileNav';
+import { useAuth } from 'agency_website/context/AuthContext'
 
-const ResponsiveNav = () => {
-  const [showNav, setShowNav] = useState(false);
-  const showNavHandler = () => setShowNav(true);
-  const closeNavHandler = () => setShowNav(false);
+const ResponsiveNav: React.FC = () => {
+  const [nav, setNav] = useState(false);
+  const { currentUser, logout } = useAuth();
+
+  const openNav = () => setNav(true);
+  const closeNav = () => setNav(false);
 
   return (
-    <div>
-      <Nav openNav={showNavHandler} />
-      <MobileNav nav={showNav} closeNav={closeNavHandler} />
-    </div>
+    <>
+      <Nav openNav={openNav} currentUser={currentUser} logout={logout} />
+      <MobileNav nav={nav} closeNav={closeNav} currentUser={currentUser} logout={logout} />
+    </>
   );
 };
 

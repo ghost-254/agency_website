@@ -1,4 +1,5 @@
-import { XMarkIcon } from "@heroicons/react/16/solid";
+// components/Navigation/MobileNav.tsx
+import { XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import ButtonBlue from "../Button/ButtonBlue";
@@ -7,9 +8,11 @@ import ButtonRed from "../Button/ButtonRed";
 interface Props {
   nav: boolean;
   closeNav: () => void;
+  currentUser: any;
+  logout: () => void;
 }
 
-const MobileNav = ({ nav, closeNav }: Props) => {
+const MobileNav = ({ nav, closeNav, currentUser, logout }: Props) => {
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -50,10 +53,26 @@ const MobileNav = ({ nav, closeNav }: Props) => {
         <li className="text-[25px] cursor-pointer text-white hover:text-yellow-300 transition-all duration-200">
           <Link href="/data" onClick={closeNav}>Data</Link>
         </li>
-        <li className="flex flex-col space-y-4 mt-10">
-          <ButtonBlue text="Admin Login" />
-          <ButtonRed text="Admin Sign Up" />
-        </li>
+        {currentUser && (
+          <>
+            <li className="text-[25px] cursor-pointer text-white hover:text-yellow-300 transition-all duration-200">
+              <Link href="/grant-applications" onClick={closeNav}>Grant Applications</Link>
+            </li>
+            <li className="text-[25px] cursor-pointer text-white hover:text-yellow-300 transition-all duration-200">
+              <button onClick={logout} className="bg-red-600 px-3 py-1 rounded">Logout</button>
+            </li>
+          </>
+        )}
+        {!currentUser && (
+          <li className="flex flex-col space-y-4 mt-10">
+            <Link href="/login" onClick={closeNav}>
+                <ButtonBlue text="Admin Login" />
+            </Link>
+            <Link href="/signup" onClick={closeNav}>
+                <ButtonRed text="Admin Sign Up" />
+            </Link>
+          </li>
+        )}
       </ul>
     </div>
   );

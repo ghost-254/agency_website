@@ -1,3 +1,4 @@
+// components/Navigation/Nav.tsx
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
@@ -7,9 +8,11 @@ import { FiMenu, FiMapPin } from "react-icons/fi";
 
 interface Props {
   openNav: () => void;
+  currentUser: any;
+  logout: () => void;
 }
 
-const Nav = ({ openNav }: Props) => {
+const Nav = ({ openNav, currentUser, logout }: Props) => {
   return (
     <div className="h-[25vh] bg-white shadow-md">
       <div className="w-[85%] flex items-center justify-between mx-auto h-[23vh]">
@@ -31,14 +34,29 @@ const Nav = ({ openNav }: Props) => {
           <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
             <Link href="/data">Data</Link>
           </li>
+          {currentUser && (
+            <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
+              <Link href="/grant-applications">Grant Applications</Link>
+            </li>
+          )}
         </ul>
         <div className="hidden lg:flex items-center space-x-2 md:space-x-5">
           <div className="flex items-center space-x-1 text-[17px] text-gray-700">
             <FiMapPin className="w-[1.5rem] h-[1.5rem] text-red-500" />
             <span>Sacramento, CA</span>
           </div>
-          <ButtonBlue text="Admin Login" />
-          <ButtonRed text="Admin Sign Up" />
+          {currentUser ? (
+            <button onClick={logout} className="bg-red-600 px-3 py-1 rounded">Logout</button>
+          ) : (
+            <>
+              <Link href="/login">
+                <ButtonBlue text="Admin Login" />
+              </Link>
+              <Link href="/signup">
+                <ButtonRed text="Admin Sign Up" />
+              </Link>
+            </>
+          )}
         </div>
         <FiMenu
           onClick={openNav}
