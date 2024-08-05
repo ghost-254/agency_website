@@ -1,6 +1,6 @@
 // _app.js (or _app.tsx if using TypeScript)
 import { AppProps } from 'next/app';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './app/context/AuthContext';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {

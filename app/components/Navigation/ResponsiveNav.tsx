@@ -2,10 +2,9 @@
 "use client"
 
 import React, { useState } from 'react';
-import { FiMenu, FiMapPin } from 'react-icons/fi';
 import Nav from './Nav';
 import MobileNav from './MobileNav';
-import { useAuth } from 'agency_website/context/AuthContext'
+import { useAuth } from '@/app/context/AuthContext';
 
 const ResponsiveNav: React.FC = () => {
   const [nav, setNav] = useState(false);

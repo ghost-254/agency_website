@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import ResponsiveNav from "./components/Navigation/ResponsiveNav";
 import Footer from "./components/Footer/Footer";
-import { AuthProvider } from '../context/AuthContext'; // Import the AuthProvider
+import { AuthProvider } from './context/AuthContext'; // Import the AuthProvider
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
