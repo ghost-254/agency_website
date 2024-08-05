@@ -2,7 +2,7 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { auth } from '../firebase';
+import { auth } from '../app/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 interface AuthContextType {

@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import Nav from './Nav';
 import MobileNav from './MobileNav';
-import { useAuth } from '@/app/context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 
 const ResponsiveNav: React.FC = () => {
   const [nav, setNav] = useState(false);
