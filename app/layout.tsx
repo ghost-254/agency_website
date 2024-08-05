@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import ResponsiveNav from "./components/Navigation/ResponsiveNav";
 import Footer from "./components/Footer/Footer";
-import { AuthProvider } from '../context/AuthContext'; // Import the AuthProvider
+import { AuthProvider } from '../context/AuthContext';
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <AuthProvider> 
+        <AuthProvider>
           <ResponsiveNav />
           {children}
           <Footer />
