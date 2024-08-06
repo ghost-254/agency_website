@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import ButtonBlue from '@/components/ButtonBlue';
-import { auth } from '../../firebaseConfig';
+import { auth } from '@/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login: React.FC = () => {

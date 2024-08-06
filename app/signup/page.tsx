@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import ButtonRed from '../components/Button/ButtonRed';
+import ButtonRed from '@/components/ButtonRed';
 import { auth } from '@/firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
