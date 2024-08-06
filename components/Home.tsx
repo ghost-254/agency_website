@@ -3,11 +3,11 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Hero from "./Hero/Hero";
-import Features from "./Features/Features";
-import Goals from "./Goals/Goals";
-import SupportTeam from "./SupportTeam/SupportTeam";
-import Company from "./Company/Company";
+import Hero from "@/components/Hero";
+import Features from "@/components/Features";
+import Goals from "@/components/Goals";
+import SupportTeam from "@/components/SupportTeam";
+import Company from "@/components/Company";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

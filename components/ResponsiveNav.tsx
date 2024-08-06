@@ -3,9 +3,11 @@
 
 import React, { useState } from 'react';
 import Nav from './Nav';
-import MobileNav from './MobileNav';
+import MobileNav from '@/components/MobileNav';
+import { useAuth } from '@/context/AuthContext';
 
 const ResponsiveNav: React.FC = () => {
+  const { currentUser, logout } = useAuth();
   const [nav, setNav] = useState(false);
 
   const openNav = () => setNav(true);
@@ -13,8 +15,8 @@ const ResponsiveNav: React.FC = () => {
 
   return (
     <>
-      <Nav openNav={openNav} />
-      <MobileNav nav={nav} closeNav={closeNav} />
+      <Nav openNav={openNav} currentUser={currentUser} logout={logout} />
+      <MobileNav nav={nav} closeNav={closeNav} currentUser={currentUser} logout={logout} />
     </>
   );
 };

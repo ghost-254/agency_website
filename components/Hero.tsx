@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonBlue from "../Button/ButtonBlue";
+import ButtonBlue from "@/components/ButtonBlue";
 import Image from "next/image";
 import { Link } from 'react-scroll';
 
