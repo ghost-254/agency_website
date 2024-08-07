@@ -1,14 +1,18 @@
-import { initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyDeNtFT9Kl_2VE_HYH2a_TX6qmrRFYobB8",
+  authDomain: "outreachconnectsacrament-9e3ed.firebaseapp.com",
+  projectId: "outreachconnectsacrament-9e3ed",
+  storageBucket: "outreachconnectsacrament-9e3ed.appspot.com",
+  messagingSenderId: "716842362601",
+  appId: "1:716842362601:web:082bd9eede0fa807223278",
+  measurementId: "G-9KQCV4WJRL"
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const auth = getAuth();
+
+
+export { app, auth }
