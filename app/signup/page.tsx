@@ -1,76 +1,68 @@
-"use client";
+"use client"
 
 import React, { useState } from 'react';
-import { FaCheck, FaTimes } from 'react-icons/fa';
-import ButtonRed from '@/components/ButtonRed';
+import { useRouter } from 'next/navigation';
+import ButtonBlue from '@/components/ButtonBlue';
 import { auth } from '@/firebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification, signOut } from 'firebase/auth';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-const SignUp: React.FC = () => {
+const Signup: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [passwordChecks, setPasswordChecks] = useState({
-    length: false,
-    specialChar: false,
-    number: false,
-    uppercase: false,
-    lowercase: false,
-  });
-  const [passwordMatchError, setPasswordMatchError] = useState('');
+  const [message, setMessage] = useState('');
+  const [userExists, setUserExists] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
-  const validatePassword = (password: string) => {
-    const length = password.length >= 6;
-    const specialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    const number = /\d/.test(password);
-    const uppercase = /[A-Z]/.test(password);
-    const lowercase = /[a-z]/.test(password);
-
-    setPasswordChecks({ length, specialChar, number, uppercase, lowercase });
-
-    return length && specialChar && number && uppercase && lowercase;
-  };
-
-  const handleSignUp = async (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    setEmailError('');
-    setPasswordError('');
-    setPasswordMatchError('');
-
-    if (!validateEmail(email)) {
-      setEmailError('Please enter a valid email address.');
-      return;
-    }
-
-    if (!validatePassword(password)) {
-      setPasswordError('Password does not meet the criteria.');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setPasswordMatchError('Passwords do not match.');
+    if (!email.endsWith('@outreachconnect.org')) {
+      setMessage('Error: Only emails with @outreachconnect.org can sign up.');
       return;
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      alert('User created successfully');
-    } catch (error) {
-      console.error('Error signing up:', error);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Send verification email with action URL
+      const actionCodeSettings = {
+        url: 'http://localhost:3000/verify-email', // Development URL
+        handleCodeInApp: true,
+      };
+
+      await sendEmailVerification(user, actionCodeSettings);
+      setMessage('Verification email sent. Please check your inbox.');
+
+      // Sign out the user after successful signup
+      await signOut(auth);
+
+      // Redirect to email verification page
+      router.push('/check-email');
+    } catch (error: any) {
+      if (error.code === 'auth/email-already-in-use') {
+        setMessage('User Already Exists');
+        setUserExists(true);
+      } else {
+        setMessage('Error signing up: ' + (error.response?.data?.msg || error.message));
+      }
     }
   };
 
+  const handleProceedToLogin = () => {
+    router.push('/login');
+  };
+
   return (
-    <form onSubmit={handleSignUp} className="max-w-md mx-auto mt-20 mb-20 p-4 shadow-lg rounded-lg bg-white">
+    <form onSubmit={handleSignup} className="max-w-md mx-auto mt-20 mb-20 p-4 shadow-lg rounded-lg bg-white">
       <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
+      {message && <p className={`mb-4 ${message.startsWith('Error') ? 'text-red-600' : 'text-green-600'}`}>{message}</p>}
       <div className="mb-4">
         <label htmlFor="email" className="block text-gray-700">Email</label>
         <input
@@ -79,60 +71,38 @@ const SignUp: React.FC = () => {
           className="w-full p-2 border border-gray-300 rounded mt-1"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onBlur={() => setEmailError(validateEmail(email) ? '' : 'Please enter a valid email address.')}
         />
-        {emailError && <p className="text-red-600 mt-1">{emailError}</p>}
       </div>
-      <div className="mb-4">
+      <div className="mb-4 relative">
         <label htmlFor="password" className="block text-gray-700">Password</label>
-        <input
-          type="password"
-          id="password"
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            validatePassword(e.target.value);
-          }}
-        />
-        {passwordError && <p className="text-red-600 mt-1">{passwordError}</p>}
-        <ul className="list-none mt-2">
-          <li className={`flex items-center ${passwordChecks.length ? 'text-green-600' : 'text-red-600'}`}>
-            {passwordChecks.length ? <FaCheck className="mr-2" /> : <FaTimes className="mr-2" />} 
-            At least 6 characters
-          </li>
-          <li className={`flex items-center ${passwordChecks.specialChar ? 'text-green-600' : 'text-red-600'}`}>
-            {passwordChecks.specialChar ? <FaCheck className="mr-2" /> : <FaTimes className="mr-2" />} 
-            At least one special character
-          </li>
-          <li className={`flex items-center ${passwordChecks.number ? 'text-green-600' : 'text-red-600'}`}>
-            {passwordChecks.number ? <FaCheck className="mr-2" /> : <FaTimes className="mr-2" />} 
-            At least one number
-          </li>
-          <li className={`flex items-center ${passwordChecks.uppercase ? 'text-green-600' : 'text-red-600'}`}>
-            {passwordChecks.uppercase ? <FaCheck className="mr-2" /> : <FaTimes className="mr-2" />} 
-            At least one uppercase letter
-          </li>
-          <li className={`flex items-center ${passwordChecks.lowercase ? 'text-green-600' : 'text-red-600'}`}>
-            {passwordChecks.lowercase ? <FaCheck className="mr-2" /> : <FaTimes className="mr-2" />} 
-            At least one lowercase letter
-          </li>
-        </ul>
+        <div className="relative">
+          <input
+            type={showPassword ? "text" : "password"}
+            id="password"
+            className="w-full p-2 border border-gray-300 rounded mt-1 pr-10"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div
+            className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? <FaEyeSlash className="text-gray-500" /> : <FaEye className="text-gray-500" />}
+          </div>
+        </div>
       </div>
-      <div className="mb-4">
-        <label htmlFor="confirmPassword" className="block text-gray-700">Confirm Password</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        {passwordMatchError && <p className="text-red-600 mt-1">{passwordMatchError}</p>}
-      </div>
-      <ButtonRed text="Sign Up" />
+      <ButtonBlue text="Sign Up" />
+      {userExists && (
+        <button
+          type="button"
+          onClick={handleProceedToLogin}
+          className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+        >
+          Proceed to Login
+        </button>
+      )}
     </form>
   );
 };
 
-export default SignUp;
+export default Signup;

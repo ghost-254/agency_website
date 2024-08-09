@@ -1,3 +1,5 @@
+// login/page.tsx
+
 "use client"
 
 import React, { useState } from 'react';
@@ -21,7 +23,8 @@ const Login: React.FC = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setMessage('Logged in successfully');
-      // Handle login success (e.g., redirect to dashboard)
+      // Redirect to homepage
+      window.location.href = '/';
     } catch (error: any) {
       setMessage('Error logging in: ' + (error.response?.data?.msg || error.message));
     }
@@ -43,18 +46,20 @@ const Login: React.FC = () => {
       </div>
       <div className="mb-4 relative">
         <label htmlFor="password" className="block text-gray-700">Password</label>
-        <input
-          type={showPassword ? "text" : "password"}
-          id="password"
-          className="w-full p-2 border border-gray-300 rounded mt-1 pr-10"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div
-          className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
-          onClick={togglePasswordVisibility}
-        >
-          {showPassword ? <FaEyeSlash className="text-gray-500" /> : <FaEye className="text-gray-500" />}
+        <div className="relative">
+          <input
+            type={showPassword ? "text" : "password"}
+            id="password"
+            className="w-full p-2 border border-gray-300 rounded mt-1 pr-10"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div
+            className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? <FaEyeSlash className="text-black" /> : <FaEye className="text-black" />}
+          </div>
         </div>
       </div>
       <ButtonBlue text="Admin Login" />

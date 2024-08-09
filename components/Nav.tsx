@@ -1,10 +1,10 @@
-// components/Navigation/Nav.tsx
+// components/Nav.tsx
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import ButtonBlue from "@/components/ButtonBlue";
-import ButtonRed from "@/components/ButtonRed";
 import { FiMenu, FiMapPin } from "react-icons/fi";
+import ButtonBlue from "./ButtonBlue";
+import ButtonRed from "./ButtonRed";
 
 interface Props {
   openNav: () => void;
@@ -35,8 +35,16 @@ const Nav: React.FC<Props> = ({ openNav, currentUser, logout }) => {
             <Link href="/data">Data</Link>
           </li>
           {currentUser && (
-            <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
-              <Link href="/grant-applications">Grant Applications</Link>
+            <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200 relative">
+              <Link href="/grant-application">Grant Applications</Link>
+              <ul className="absolute bg-white shadow-md mt-2 hidden group-hover:block">
+                <li className="p-2 hover:bg-gray-100">
+                  <Link href="/grant-application?option=create">Create New Application</Link>
+                </li>
+                <li className="p-2 hover:bg-gray-100">
+                  <Link href="/grant-application?option=history">Application History</Link>
+                </li>
+              </ul>
             </li>
           )}
         </ul>

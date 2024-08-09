@@ -1,4 +1,4 @@
-// components/Navigation/MobileNav.tsx
+// components/MobileNav.tsx
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
@@ -56,7 +56,7 @@ const MobileNav: React.FC<Props> = ({ nav, closeNav, currentUser, logout }) => {
         {currentUser && (
           <>
             <li className="text-[25px] cursor-pointer text-white hover:text-yellow-300 transition-all duration-200">
-              <Link href="/grant-applications" onClick={closeNav}>Grant Applications</Link>
+              <Link href="/grant-application" onClick={closeNav}>Grant Applications</Link>
             </li>
             <li className="text-[25px] cursor-pointer text-white hover:text-yellow-300 transition-all duration-200">
               <button onClick={logout} className="bg-red-600 px-3 py-1 rounded">Logout</button>
