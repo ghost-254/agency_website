@@ -1,5 +1,6 @@
 import React from "react";
 import ButtonBlue from "@/components/ButtonBlue";
+import ButtonRed from "./ButtonRed";
 import Image from "next/image";
 import { Link } from 'react-scroll';
 
@@ -32,6 +33,9 @@ const Hero = () => {
             <Link to="supportTeam" smooth={true} duration={700}>
               <ButtonBlue text="Get in Touch" />
             </Link>
+      
+              <ButtonRed text="Donate to Us" />
+  
           </div>
         </div>
         <div

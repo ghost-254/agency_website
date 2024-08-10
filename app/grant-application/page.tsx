@@ -1,9 +1,11 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState, useRef } from 'react';
-import { useAuth } from '@/context/AuthContext';
-import SendDraftButton from '@/components/SendDraftButton';
-import SubmitApplicationButton from '@/components/SubmitApplicationButton';
+import React, { useEffect, useState, useRef } from "react";
+import { useAuth } from "@/context/AuthContext";
+import SendDraftButton from "@/components/SendDraftButton";
+import SubmitApplicationButton from "@/components/SubmitApplicationButton";
+import { firestore } from "@/firebaseConfig";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
 interface Application {
   grantName: string;
@@ -16,15 +18,15 @@ interface Application {
 
 const GrantApplication = () => {
   const { currentUser } = useAuth();
-  const [selectedOption, setSelectedOption] = useState('create');
-  const [grantName, setGrantName] = useState('');
-  const [grantDescription, setGrantDescription] = useState('');
-  const [orgAddress, setOrgAddress] = useState('');
-  const [targetEmail, setTargetEmail] = useState('');
-  const [targetAddress, setTargetAddress] = useState('');
-  const [letterMessage, setLetterMessage] = useState('');
+  const [selectedOption, setSelectedOption] = useState("create");
+  const [grantName, setGrantName] = useState("");
+  const [grantDescription, setGrantDescription] = useState("");
+  const [orgAddress, setOrgAddress] = useState("");
+  const [targetEmail, setTargetEmail] = useState("");
+  const [targetAddress, setTargetAddress] = useState("");
+  const [letterMessage, setLetterMessage] = useState("");
   const [applicationHistory, setApplicationHistory] = useState<Application[]>([]);
-  const [emailError, setEmailError] = useState('');
+  const [emailError, setEmailError] = useState("");
 
   const orgAddressRef = useRef<HTMLTextAreaElement>(null);
   const targetAddressRef = useRef<HTMLTextAreaElement>(null);
@@ -36,7 +38,16 @@ const GrantApplication = () => {
 
   useEffect(() => {
     if (!currentUser) {
-      window.location.href = '/login';
+      window.location.href = "/login";
+    } else {
+      const fetchApplicationHistory = async () => {
+        const q = query(collection(firestore, "applications"), where("userId", "==", currentUser.uid));
+        const querySnapshot = await getDocs(q);
+        const savedHistory = querySnapshot.docs.map((doc) => doc.data() as Application);
+        setApplicationHistory(savedHistory);
+      };
+
+      fetchApplicationHistory();
     }
   }, [currentUser]);
 
@@ -46,28 +57,36 @@ const GrantApplication = () => {
     setSelectedOption(event.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newApplication = {
+      userId: currentUser?.uid,
       grantName,
       grantDescription,
       orgAddress,
       targetEmail,
       targetAddress,
       letterMessage,
+      createdAt: new Date(),
     };
 
-    setApplicationHistory([...applicationHistory, newApplication]);
-
-    // Clear form fields
-    setGrantName('');
-    setGrantDescription('');
-    setOrgAddress('');
-    setTargetEmail('');
-    setTargetAddress('');
-    setLetterMessage('');
+    try {
+      await addDoc(collection(firestore, "applications"), newApplication);
+      setApplicationHistory([...applicationHistory, newApplication]);
+      // Clear form fields
+      setGrantName("");
+      setGrantDescription("");
+      setTargetEmail("");
+      setTargetAddress("");
+    } catch (error) {
+      console.error("Error saving application:", error);
+    }
   };
 
-  const handleInput = (ref: React.RefObject<HTMLTextAreaElement>, placeholder: string, setState: React.Dispatch<React.SetStateAction<string>>) => {
+  const handleInput = (
+    ref: React.RefObject<HTMLTextAreaElement>,
+    placeholder: string,
+    setState: React.Dispatch<React.SetStateAction<string>>
+  ) => {
     if (ref.current) {
       ref.current.style.height = "auto";
       ref.current.style.height = ref.current.scrollHeight + "px";
@@ -86,9 +105,9 @@ const GrantApplication = () => {
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTargetEmail(event.target.value);
     if (validateEmail(event.target.value)) {
-      setEmailError('');
+      setEmailError("");
     } else {
-      setEmailError('Invalid email format');
+      setEmailError("Invalid email format");
     }
   };
 
@@ -109,12 +128,14 @@ const GrantApplication = () => {
           <option value="history">Application History</option>
         </select>
       </div>
-      {selectedOption === 'create' && (
+      {selectedOption === "create" && (
         <div>
           <h3 className="text-xl font-semibold mb-4">Create New Application</h3>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="mb-4">
-              <label htmlFor="grantName" className="block text-gray-700 mb-2">Grant Name</label>
+              <label htmlFor="grantName" className="block text-gray-700 mb-2">
+                Grant Name
+              </label>
               <input
                 type="text"
                 id="grantName"
@@ -122,10 +143,13 @@ const GrantApplication = () => {
                 value={grantName}
                 onChange={(e) => setGrantName(e.target.value)}
                 required
+                placeholder="e.g., Educational Support Program"
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="grantDescription" className="block text-gray-700 mb-2">Grant Description</label>
+              <label htmlFor="grantDescription" className="block text-gray-700 mb-2">
+                Grant Description
+              </label>
               <textarea
                 id="grantDescription"
                 className="w-full p-2 border border-gray-300 rounded"
@@ -133,11 +157,14 @@ const GrantApplication = () => {
                 onChange={(e) => setGrantDescription(e.target.value)}
                 required
                 rows={6}
+                placeholder="e.g., A program aimed at providing educational resources for underprivileged children."
               ></textarea>
             </div>
+            <h1 className="text-center font-bold text-3xl mb-6">Apply for Grant</h1>
             <div className="mb-4">
-            <h1 className='text-center font-bold text-3xl mb-4'>Apply for the Grant</h1>
-              <label htmlFor="orgAddress" className="block text-gray-700 mb-2">Organization&apos;s Official Address</label>
+              <label htmlFor="orgAddress" className="block text-gray-700 mb-2">
+                Outreach Connect&apos;s Official Address
+              </label>
               <textarea
                 id="orgAddress"
                 ref={orgAddressRef}
@@ -152,7 +179,9 @@ const GrantApplication = () => {
               <small className="block text-gray-500">Enter address in the format: Outreach Connect, 123 Main Street, Sacramento, CA 95814, official@outreachconnect.org, [Today&apos;s Date].</small>
             </div>
             <div className="mb-4">
-              <label htmlFor="targetEmail" className="block text-gray-700 mb-2">Target Organization&apos;s Email</label>
+              <label htmlFor="targetEmail" className="block text-gray-700 mb-2">
+                Target Organization&apos;s Email
+              </label>
               <input
                 type="email"
                 id="targetEmail"
@@ -160,11 +189,14 @@ const GrantApplication = () => {
                 value={targetEmail}
                 onChange={handleEmailChange}
                 required
+                placeholder="e.g., contact@globalfundforchildren.org"
               />
               {emailError && <small className="text-red-600">{emailError}</small>}
             </div>
             <div className="mb-4">
-              <label htmlFor="targetAddress" className="block text-gray-700 mb-2">Target Organization&apos;s Address</label>
+              <label htmlFor="targetAddress" className="block text-gray-700 mb-2">
+                Target Organization&apos;s Address
+              </label>
               <textarea
                 id="targetAddress"
                 ref={targetAddressRef}
@@ -179,7 +211,9 @@ const GrantApplication = () => {
               <small className="block text-gray-500">Enter address in the format: The Global Fund for Children, 1101 14th St NW, Suite 420, Washington, DC 20005.</small>
             </div>
             <div className="mb-4">
-              <label htmlFor="letterMessage" className="block text-gray-700 mb-2">Letter Message</label>
+              <label htmlFor="letterMessage" className="block text-gray-700 mb-2">
+                Letter Message
+              </label>
               <textarea
                 id="letterMessage"
                 ref={letterMessageRef}
@@ -199,7 +233,7 @@ const GrantApplication = () => {
               targetAddress={targetAddress}
               letterMessage={letterMessage}
             />
-            <p className="text-red-600 mb-4">Send a draft message to official@outreachconnect.org and preview before submitting the final letter.</p>
+            <p className="text-red-600 mb-4">Clicking the above button will send a draft message to official@outreachconnect.org for you to preview it before submitting the final letter.</p>
             <SubmitApplicationButton
               orgAddress={orgAddress}
               targetEmail={targetEmail}
@@ -207,10 +241,11 @@ const GrantApplication = () => {
               letterMessage={letterMessage}
               onSubmit={handleSubmit}
             />
+            <p className="text-green-600 mt-4 mb-4">This button will send the official letter to the Grant Provider&apos;s (Target Organization&apos;s) Email.</p>
           </form>
         </div>
       )}
-      {selectedOption === 'history' && (
+      {selectedOption === "history" && (
         <div>
           <h3 className="text-xl font-semibold mb-4">Application History</h3>
           {applicationHistory.length === 0 ? (
@@ -219,14 +254,26 @@ const GrantApplication = () => {
             <ul>
               {applicationHistory.map((app, index) => (
                 <li key={index} className="mb-4 p-4 border border-gray-300 rounded">
-                  <p><strong>Grant Name:</strong> {app.grantName}</p>
-                  <p><strong>Grant Description:</strong> {app.grantDescription}</p>
-                  <p><strong>Organization&pos;s Official Address:</strong></p>
+                  <p>
+                    <strong>Grant Name:</strong> {app.grantName}
+                  </p>
+                  <p>
+                    <strong>Grant Description:</strong> {app.grantDescription}
+                  </p>
+                  <p>
+                    <strong>Organization&apos;s Official Address:</strong>
+                  </p>
                   <pre className="whitespace-pre-wrap">{app.orgAddress}</pre>
-                  <p><strong>Target Organization&apos;s Email:</strong> {app.targetEmail}</p>
-                  <p><strong>Target Organization&apos;s Address:</strong></p>
+                  <p>
+                    <strong>Target Organization&apos;s Email:</strong> {app.targetEmail}
+                  </p>
+                  <p>
+                    <strong>Target Organization&apos;s Address:</strong>
+                  </p>
                   <pre className="whitespace-pre-wrap">{app.targetAddress}</pre>
-                  <p><strong>Letter Message:</strong></p>
+                  <p>
+                    <strong>Letter Message:</strong>
+                  </p>
                   <pre className="whitespace-pre-wrap">{app.letterMessage}</pre>
                 </li>
               ))}
