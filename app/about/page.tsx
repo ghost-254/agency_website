@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -46,7 +46,6 @@ const About = () => {
           <div className="flex space-x-4">
             <FaFacebookF className="text-xl cursor-pointer hover:text-gray-700" />
             <FaTwitter className="text-xl cursor-pointer hover:text-gray-700" />
-            <FaInstagram className="text-xl cursor-pointer hover:text-gray-700" />
             <FaLinkedinIn className="text-xl cursor-pointer hover:text-gray-700" />
           </div>
         </div>

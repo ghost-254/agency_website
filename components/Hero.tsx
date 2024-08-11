@@ -1,10 +1,14 @@
 import React from "react";
 import ButtonBlue from "@/components/ButtonBlue";
-import ButtonRed from "./ButtonRed";
+import ButtonRed from "@/components/ButtonRed";
 import Image from "next/image";
 import { Link } from 'react-scroll';
 
 const Hero = () => {
+  const handleDonateClick = () => {
+    window.location.href = '/donate';
+  };
+
   return (
     <div className="py-16 flex items-center justify-center bg-white">
       <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-5 items-center gap-8">
@@ -33,9 +37,7 @@ const Hero = () => {
             <Link to="supportTeam" smooth={true} duration={700}>
               <ButtonBlue text="Get in Touch" />
             </Link>
-      
-              <ButtonRed text="Donate to Us" />
-  
+            <ButtonRed text="Donate to Us" onClick={handleDonateClick} />
           </div>
         </div>
         <div
