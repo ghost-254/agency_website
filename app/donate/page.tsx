@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaStripe, FaPaypal, FaCcVisa, FaCcMastercard, FaCcAmex, FaCcDiscover } from 'react-icons/fa';
+import PayPalButton from '@/components/PayPalButton';  // Adjust the path based on your project structure
 
 const Donate = () => {
   return (
@@ -12,21 +12,9 @@ const Donate = () => {
               Your donations help us continue our work in supporting homeless and underserved individuals.
             </p>
             <div className="mt-8">
-              <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md flex items-center justify-center space-x-2 hover:bg-blue-700 transition duration-300">
-                <FaStripe className="text-2xl" />
-                <span>Donate with Stripe</span>
-              </button>
-              <div className="flex justify-center mt-4 space-x-2 items-center text-gray-600">
-                <span className="text-lg">Stripe Accepts Credit and Debit Cards:</span>
-                <FaCcVisa className="text-2xl" />
-                <FaCcMastercard className="text-2xl" />
-                <FaCcAmex className="text-2xl" />
-                <FaCcDiscover className="text-2xl" />
+              <div className="mt-8">
+                <PayPalButton />
               </div>
-              <button className="w-full bg-red-600 text-white py-2 px-4 rounded-md flex items-center justify-center space-x-2 mt-4 hover:bg-red-700 transition duration-300">
-                <FaPaypal className="text-2xl" />
-                <span>Donate with PayPal</span>
-              </button>
             </div>
           </div>
         </div>

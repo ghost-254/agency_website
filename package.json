@@ -13,6 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@heroicons/react": "^2.1.5",
+    "@paypal/react-paypal-js": "^8.5.0",
     "agency_website": "file:",
     "aos": "^3.0.0-beta.6",
     "bcryptjs": "^2.4.3",
