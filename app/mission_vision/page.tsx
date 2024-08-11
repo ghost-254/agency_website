@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from 'react';
 import { FaBullseye, FaEye } from 'react-icons/fa';
@@ -11,16 +11,14 @@ import { Pagination, Autoplay } from 'swiper/modules';
 
 const MissionVision: React.FC = () => {
   const images = [
-    '/path/to/image1.jpg',
-    '/path/to/image2.jpg',
-    '/path/to/image3.jpg',
-    '/path/to/image4.jpg',
-    '/path/to/image5.jpg',
-    '/path/to/image6.jpg',
-    '/path/to/image7.jpg',
-    '/path/to/image8.jpg',
-    '/path/to/image9.jpg',
-    '/path/to/image10.jpg',
+    '/image106.jpg',
+    '/image104.jpg',
+    '/image108.jpg',
+    '/image101.jpg',
+    '/image102.jpg',
+    '/image103.jpg',
+    '/image105.jpg',
+    '/image107.jpg',
   ];
 
   return (
@@ -46,22 +44,23 @@ const MissionVision: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="bg-white shadow-lg rounded-lg p-6">
+      <div className="p-2">
         <Swiper
           modules={[Pagination, Autoplay]}
           pagination={{ clickable: true }}
           autoplay={{ delay: 3000 }}
           loop={true}
-          className="w-full h-64"
+          className="w-full"
         >
           {images.map((image, index) => (
             <SwiperSlide key={index}>
-              <div className="relative w-full h-64">
+              <div className="flex justify-center">
                 <Image
                   src={image}
                   alt={`Slide ${index + 1}`}
-                  layout="fill"
-                  objectFit="cover"
+                  width={600} // Set your desired width
+                  height={400} // Set your desired height
+                  style={{ objectFit: 'cover' }}
                   className="rounded"
                 />
               </div>

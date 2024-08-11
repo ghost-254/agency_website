@@ -1,6 +1,7 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaVimeoV, FaLinkedinIn } from 'react-icons/fa';
-import Image from 'next/image'
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const About = () => {
   return (
@@ -8,14 +9,26 @@ const About = () => {
       <div className="flex flex-wrap mb-8">
         <div className="w-full md:w-1/2 mt-10">
           <Image 
-            src="/path/to/your/image.jpg" 
-            alt="Who is Behind" 
-            width={500}
-            height={400}
+            src="/profile.jpg" 
+            alt="Profile Picture" 
+            width={600}
+            height={800}
             className="rounded shadow-lg mb-4 md:mb-0" 
-            />
+          />
+          {/* Adding Name and Icons */}
+          <div className="font-mono mt-4 mb-6">
+            <div className="text-2xl font-semibold flex items-center">
+              <Link href="https://www.linkedin.com/in/sandra-hertkorn-6407738a/"><FaLinkedinIn className="font-mono text-green-700 mr-2 hover:text-green-900" /></Link>
+              <span>Sandra Hertkorn</span>
+            </div>
+            <div className="flex items-center text-lg text-gray-700 mt-2">
+              <Link href="mailto:sandra.hertkorn@outreachconnect.org"><FaEnvelope className="font-mono text-green-700 mr-4 hover:text-green-900" /></Link>
+              <span>sandra.hertkorn@outreachconnect.org</span>
+            </div>
+          </div>
         </div>
         <div className="w-full md:w-1/2 md:pl-8">
+
           <h2 className="text-2xl font-semibold mb-4 mt-8">Who is Behind?</h2>
           <p className="mb-4 text-left">
             Outreachconnect.org is a woman-owned initiative founded by a former Army veteran with over fifty years of combined experience in healthcare. 
