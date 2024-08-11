@@ -2,7 +2,6 @@ import { getApp, getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDeNtFT9Kl_2VE_HYH2a_TX6qmrRFYobB8",
   authDomain: "outreachconnectsacrament-9e3ed.firebaseapp.com",
@@ -13,12 +12,8 @@ const firebaseConfig = {
   measurementId: "G-9KQCV4WJRL"
 };
 
-// Initialize Firebase app
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const auth = getAuth();
+const firestore = getFirestore(app);
 
-// Initialize Firebase services
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-// Export Firebase services
-export { app, auth, db };
+export { app, auth, firestore }
