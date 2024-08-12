@@ -1,5 +1,6 @@
 import React from "react";
 import { FiMapPin } from "react-icons/fi";
+import { FaLinkedin } from "react-icons/fa"; // Import the LinkedIn icon
 import Link from "next/link";
 
 const Footer = () => {
@@ -23,10 +24,10 @@ const Footer = () => {
             Essentials
           </h1>
           <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
-            <Link href="/about"> About</Link>
+            <Link href="/about">About</Link>
           </p>
           <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
-            <Link href="/mission_vision"> Mission & Vision</Link>
+            <Link href="/mission_vision">Mission & Vision</Link>
           </p>
         </div>
 
@@ -48,14 +49,11 @@ const Footer = () => {
           <h1 className="text-[17px] text-gray-900 font-semibold mb-[1.5rem] ">
             Social Media
           </h1>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
-            Facebook
-          </p>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
-            Twitter
-          </p>
-          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700">
-            LinkedIn
+          <p className="text-black opacity-80 mb-[1rem] text-[15px] cursor-pointer hover:text-green-700 flex items-center">
+            <FaLinkedin className="mr-2 text-blue-700" /> 
+            <Link href="https://www.linkedin.com/in/sandra-hertkorn-6407738a/" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </Link>
           </p>
         </div>
       </div>

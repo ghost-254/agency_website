@@ -5,23 +5,23 @@ import Link from 'next/link';
 
 const About = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-14 py-8">
       <div className="flex flex-wrap mb-8">
         <div className="w-full md:w-1/2 mt-10">
           <Image 
             src="/profile.jpg" 
             alt="Profile Picture" 
-            width={600}
-            height={800}
+            width={450}
+            height={600}
             className="rounded shadow-lg mb-4 md:mb-0" 
           />
           {/* Adding Name and Icons */}
           <div className="font-mono mt-4 mb-6">
-            <div className="text-2xl font-semibold flex items-center">
-              <Link href="https://www.linkedin.com/in/sandra-hertkorn-6407738a/"><FaLinkedinIn className="font-mono text-green-700 mr-2 hover:text-green-900" /></Link>
+            <div className="text-sm font-semibold flex items-center">
+              <Link href="https://www.linkedin.com/in/sandra-hertkorn-6407738a/"><FaLinkedinIn className="font-mono text-green-700 mr-4 hover:text-green-900" /></Link>
               <span>Sandra Hertkorn</span>
             </div>
-            <div className="flex items-center text-lg text-gray-700 mt-2">
+            <div className="flex items-center text-sm text-gray-700 mt-2">
               <Link href="mailto:sandra.hertkorn@outreachconnect.org"><FaEnvelope className="font-mono text-green-700 mr-4 hover:text-green-900" /></Link>
               <span>sandra.hertkorn@outreachconnect.org</span>
             </div>
@@ -43,11 +43,6 @@ const About = () => {
           <p className="mb-4">
             Outreachconnect.org is dedicated to advocacy that promotes human dignity. By connecting the homeless with the support services offered by various agencies and organizations, we demonstrate social responsibility and commitment to those less fortunate.
           </p>
-          <div className="flex space-x-4">
-            <FaFacebookF className="text-xl cursor-pointer hover:text-gray-700" />
-            <FaTwitter className="text-xl cursor-pointer hover:text-gray-700" />
-            <FaLinkedinIn className="text-xl cursor-pointer hover:text-gray-700" />
-          </div>
         </div>
       </div>
       <div className="flex flex-wrap text-center">
