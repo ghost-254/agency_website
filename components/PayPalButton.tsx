@@ -8,8 +8,8 @@ const PayPalButton = () => {
     document.addEventListener("DOMContentLoaded", () => {
       if (window.paypal) {
         window.paypal.HostedButtons({
-          hostedButtonId: "STT4ECDW3D9WS",
-        }).render("#paypal-container-STT4ECDW3D9WS");
+          hostedButtonId: "PMXSBVHJAFT2Y",
+        }).render("#paypal-container-PMXSBVHJAFT2Y");
       }
     });
   }, []);
@@ -17,17 +17,17 @@ const PayPalButton = () => {
   return (
     <div>
       <Script
-        src="https://www.paypal.com/sdk/js?client-id=BAAM52acxEiK4GCRiUfkJwGpXduspaVHcvBY3TnYQOxjkWKuIQSJ57fW7qkyVPQJww7YQ8Gn4TzJnqBDag&components=hosted-buttons&disable-funding=venmo&currency=USD"
+        src="https://www.paypal.com/sdk/js?client-id=BAA_A2FR9ukQgTc0zBin-VB5IcBMcAMegKNxwy4tHtmO_oTBt0nxxFX0yLrad-E715ASA_BlUPhRQ5rcSw&components=hosted-buttons&enable-funding=venmo&currency=USD"
         strategy="lazyOnload"
         onLoad={() => {
           if (document.readyState === 'complete' && window.paypal) {
             window.paypal.HostedButtons({
-              hostedButtonId: "STT4ECDW3D9WS",
-            }).render("#paypal-container-STT4ECDW3D9WS");
+              hostedButtonId: "PMXSBVHJAFT2Y",
+            }).render("#paypal-container-PMXSBVHJAFT2Y");
           }
         }}
       />
-      <div id="paypal-container-STT4ECDW3D9WS"></div>
+      <div id="paypal-container-PMXSBVHJAFT2Y"></div>
     </div>
   );
 };
