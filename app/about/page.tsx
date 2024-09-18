@@ -29,7 +29,7 @@ const About = () => {
         </div>
         <div className="w-full md:w-1/2 md:pl-8">
 
-          <h2 className="text-2xl font-semibold mb-4 mt-8">Who is Behind?</h2>
+          <h2 className="text-2xl font-semibold mb-4 mt-8">Behind the Vision</h2>
           <p className="mb-4 text-left">
             Outreachconnect.org is a woman-owned initiative founded by a former Army veteran with over fifty years of combined experience in healthcare. 
             The organization emphasizes diversity and ethics, aiming to bridge the gap in engaging community agencies and expedite support for the homeless.
