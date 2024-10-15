@@ -68,9 +68,6 @@ const MobileNav: React.FC<Props> = ({ nav, closeNav, currentUser, logout }) => {
             <Link href="/login" onClick={closeNav}>
                 <ButtonBlue text="Admin Login" />
             </Link>
-            <Link href="/signup" onClick={closeNav}>
-                <ButtonRed text="Admin Sign Up" />
-            </Link>
           </li>
         )}
       </ul>

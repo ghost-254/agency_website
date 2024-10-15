@@ -27,12 +27,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        if (user.emailVerified) {
-          setCurrentUser(user);
-        } else {
-          setCurrentUser(null);
-        }
+      if (user && user.email && user.email.endsWith('@outreachconnect.org')) {
+        setCurrentUser(user);
       } else {
         setCurrentUser(null);
       }

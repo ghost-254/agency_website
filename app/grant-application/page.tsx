@@ -233,7 +233,7 @@ const GrantApplication = () => {
               targetAddress={targetAddress}
               letterMessage={letterMessage}
             />
-            <p className="text-red-600 mb-4">Clicking the above button will send a draft message to official@outreachconnect.org for you to preview it before submitting the final letter.</p>
+            <p className="text-green-600 mb-4">Clicking the above button will send a draft message to official@outreachconnect.org for you to preview it before submitting the final letter.</p>
             <SubmitApplicationButton
               orgAddress={orgAddress}
               targetEmail={targetEmail}
@@ -241,7 +241,7 @@ const GrantApplication = () => {
               letterMessage={letterMessage}
               onSubmit={handleSubmit}
             />
-            <p className="text-green-600 mt-4 mb-4">This button will send the official letter to the Grant Provider&apos;s (Target Organization&apos;s) Email.</p>
+            <p className="text-blue-600 mt-4 mb-4">This button will send the official letter to the Grant Provider&apos;s (Target Organization&apos;s) Email.</p>
           </form>
         </div>
       )}

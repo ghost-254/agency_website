@@ -39,7 +39,7 @@ const SendDraftButton: React.FC<Props> = ({ orgAddress, targetEmail, targetAddre
       <button
         type="button"
         onClick={sendDraftEmail}
-        className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 flex items-center justify-center mb-4"
+        className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-900 flex items-center justify-center mb-4"
       >
         {loading ? <FontAwesomeIcon icon={faSpinner} className="animate-spin mr-2" /> : null}
         SEND DRAFT FIRST

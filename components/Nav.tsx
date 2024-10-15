@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { FiMenu, FiMapPin } from "react-icons/fi";
 import ButtonBlue from "./ButtonBlue";
-import ButtonRed from "./ButtonRed";
 
 interface Props {
   openNav: () => void;
@@ -59,9 +58,6 @@ const Nav: React.FC<Props> = ({ openNav, currentUser, logout }) => {
             <>
               <Link href="/login">
                 <ButtonBlue text="Admin Login" />
-              </Link>
-              <Link href="/signup">
-                <ButtonRed text="Admin Sign Up" />
               </Link>
             </>
           )}

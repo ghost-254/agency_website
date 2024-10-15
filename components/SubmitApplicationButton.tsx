@@ -41,7 +41,7 @@ const SubmitApplicationButton: React.FC<Props> = ({ orgAddress, targetEmail, tar
       <button
         type="button"
         onClick={submitApplicationEmail}
-        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 flex items-center justify-center"
+        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center justify-center"
       >
         {loading ? <FontAwesomeIcon icon={faSpinner} className="animate-spin mr-2" /> : null}
         Submit Application

@@ -20,13 +20,26 @@ const Login: React.FC = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check if the email is from the official domain
+    if (!email.endsWith('@outreachconnect.org')) {
+      setMessage('Error: Only emails with @outreachconnect.org domain can log in.');
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setMessage('Logged in successfully');
       // Redirect to homepage
       window.location.href = '/';
     } catch (error: any) {
-      setMessage('Error logging in: ' + (error.response?.data?.msg || error.message));
+      if (error.code === 'auth/user-not-found') {
+        setMessage('User does not exist. Please contact the administrator for direct login details.');
+      } else if (error.code === 'auth/email-already-in-use') {
+        setMessage('User already exists. Please contact the administrator.');
+      } else {
+        setMessage('Error logging in: ' + (error.response?.data?.msg || error.message));
+      }
     }
   };
 
