@@ -53,6 +53,9 @@ const MobileNav: React.FC<Props> = ({ nav, closeNav, currentUser, logout }) => {
         <li className="text-[25px] cursor-pointer text-white hover:text-yellow-300 transition-all duration-200">
           <Link href="/data" onClick={closeNav}>Data</Link>
         </li>
+        <li className="text-[25px] cursor-pointer text-white hover:text-yellow-300 transition-all duration-200">
+          <Link href="/blog" onClick={closeNav}>Blog</Link>
+        </li>
         {currentUser && (
           <>
             <li className="text-[25px] cursor-pointer text-white hover:text-yellow-300 transition-all duration-200">

@@ -33,6 +33,9 @@ const Nav: React.FC<Props> = ({ openNav, currentUser, logout }) => {
           <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
             <Link href="/data">Data</Link>
           </li>
+          <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
+            <Link href="/blog">Blog</Link>
+          </li>
           {currentUser && (
             <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200 relative">
               <Link href="/grant-application">Grant Applications</Link>
@@ -49,8 +52,8 @@ const Nav: React.FC<Props> = ({ openNav, currentUser, logout }) => {
         </ul>
         <div className="hidden lg:flex items-center space-x-2 md:space-x-5">
           <div className="flex items-center space-x-1 text-[17px] text-gray-700">
-            <FiMapPin className="w-[1.5rem] h-[1.5rem] text-red-500" />
-            <span>Sacramento, CA</span>
+            <FiMapPin className="lg:inline-block w-[1.5rem] h-[1.5rem] text-red-500 hidden" />
+            <span className="lg:inline-block hidden">Sacramento, CA</span>
           </div>
           {currentUser ? (
             <button onClick={logout} className="bg-red-600 px-3 py-1 rounded">Logout</button>
@@ -67,11 +70,7 @@ const Nav: React.FC<Props> = ({ openNav, currentUser, logout }) => {
           className="w-[1.5rem] lg:hidden h-[1.5rem] text-slate-900 cursor-pointer"
         />
       </div>
-      {/* Location pin and text for small screens */}
-      <div className="flex lg:hidden justify-center mt-4 text-gray-700">
-        <FiMapPin className="w-[1.5rem] h-[1.5rem] text-red-500" />
-        <span className="ml-1 text-[17px]">Sacramento, CA</span>
-      </div>
+      
     </div>
   );
 };
