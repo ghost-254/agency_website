@@ -1,9 +1,10 @@
 // components/Nav.tsx
 import Link from "next/link";
-import React from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { FiMenu, FiMapPin } from "react-icons/fi";
+import { FiMenu, FiMapPin, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import ButtonBlue from "./ButtonBlue";
+import LoginPromptModal from "./LoginPromptModal";
 
 interface Props {
   openNav: () => void;
@@ -12,6 +13,33 @@ interface Props {
 }
 
 const Nav: React.FC<Props> = ({ openNav, currentUser, logout }) => {
+  const [isBlogDropdownOpen, setBlogDropdownOpen] = useState(false);
+  const [isLoginPromptOpen, setLoginPromptOpen] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null); // Ref to store timeout
+
+  const toggleBlogDropdown = () => {
+    setBlogDropdownOpen(!isBlogDropdownOpen);
+  };
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current); // Clear timeout if hovering again
+    }
+    setBlogDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setBlogDropdownOpen(false);
+    }, 200); // Delay before closing
+  };
+
+  const handlePostBlogClick = () => {
+    if (!currentUser) {
+      setLoginPromptOpen(true);
+    }
+  };
+
   return (
     <div className="h-[25vh] bg-white shadow-md">
       <div className="w-[85%] flex items-center justify-between mx-auto h-[23vh]">
@@ -33,8 +61,28 @@ const Nav: React.FC<Props> = ({ openNav, currentUser, logout }) => {
           <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
             <Link href="/data">Data</Link>
           </li>
-          <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200">
-            <Link href="/blog">Blog</Link>
+          <li 
+            className="relative"
+            onMouseEnter={handleMouseEnter} // Show dropdown on hover
+            onMouseLeave={handleMouseLeave} // Hide dropdown when not hovering
+          >
+            <div 
+              className="flex items-center cursor-pointer text-[17px] hover:text-red-500 transition-all duration-200"
+              onClick={toggleBlogDropdown}
+            >
+              <span>Blog</span>
+              {isBlogDropdownOpen ? <FiChevronUp className="ml-1" /> : <FiChevronDown className="ml-1" />}
+            </div>
+            {isBlogDropdownOpen && (
+              <ul className="fixed bg-white shadow-md mt-2 p-4 rounded-md">
+                <li className="p-3 hover:bg-gray-100">
+                  <Link href="/blog">Read Articles</Link>
+                </li>
+                <li className="p-3 hover:bg-gray-100">
+                  <Link href="/blog/create" onClick={handlePostBlogClick} className="cursor-pointer">Post a Blog</Link>
+                </li>
+              </ul>
+            )}
           </li>
           {currentUser && (
             <li className="text-[17px] cursor-pointer hover:text-red-500 transition-all duration-200 relative">
@@ -58,11 +106,9 @@ const Nav: React.FC<Props> = ({ openNav, currentUser, logout }) => {
           {currentUser ? (
             <button onClick={logout} className="bg-red-600 px-3 py-1 rounded">Logout</button>
           ) : (
-            <>
-              <Link href="/login">
-                <ButtonBlue text="Admin Login" />
-              </Link>
-            </>
+            <Link href="/login">
+              <ButtonBlue text="Admin Login" />
+            </Link>
           )}
         </div>
         <FiMenu
@@ -70,7 +116,7 @@ const Nav: React.FC<Props> = ({ openNav, currentUser, logout }) => {
           className="w-[1.5rem] lg:hidden h-[1.5rem] text-slate-900 cursor-pointer"
         />
       </div>
-      
+      <LoginPromptModal isOpen={isLoginPromptOpen} onClose={() => setLoginPromptOpen(false)} />
     </div>
   );
 };

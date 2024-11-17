@@ -1,4 +1,5 @@
 // app/blog/[id]/page.tsx
+
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
@@ -7,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { db } from '@/firebaseConfig';
 import Image from 'next/image';
 import Link from 'next/link';
+import Loading from '@/components/Loading';
 
 interface BlogPost {
   title: string;
@@ -79,7 +81,7 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
     };
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
 
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 

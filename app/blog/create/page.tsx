@@ -1,3 +1,5 @@
+//app/blog/create/page.tsx 
+
 "use client"
 
 import { useAuth } from '@/context/AuthContext';
@@ -145,6 +147,7 @@ export default function CreateArticlePage() {
             <option value="Mental Health">Mental Health</option>
             <option value="Community Engagement">Community Engagement</option>
             <option value="Homelessness">Homelessness</option>
+            <option value="Diseases & Disorders">Diseases & Disorders</option>
             {/* Add more categories as needed */}
           </select>
           <input
