@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import { useRouter } from 'next/navigation';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, setDoc, doc } from 'firebase/firestore';
 import { db } from '@/firebaseConfig';
 import { debounce } from '@/app/utils/debounce';
 
@@ -85,8 +85,11 @@ export default function CreateArticlePage() {
 
     setLoading(true);
 
+    // Format the title to create a valid document ID
+    const formattedTitle = title.toLowerCase().replace(/\s+/g, '-');
+
     try {
-      await addDoc(collection(db, 'blogPosts'), {
+      await setDoc(doc(db, 'blogPosts', formattedTitle), { // Use setDoc with formatted title
         title,
         content,
         category,
@@ -97,7 +100,7 @@ export default function CreateArticlePage() {
         createdAt: serverTimestamp(),
       });
       setLoading(false);
-      router.push('/blog');
+      router.push(`/blog/${formattedTitle}`); // Redirect to the new article URL
     } catch (error) {
       console.error("Error posting article:", error);
       setLoading(false);
