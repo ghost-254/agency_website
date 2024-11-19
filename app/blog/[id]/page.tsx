@@ -192,8 +192,8 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
           src={post.imageUrl}
           alt={post.title}
           width={600}
-          height={400}
-          className="w-full h-96 object-cover rounded-md mb-8"
+          height={500}
+          className="w-1/2 h-auto mx-20 object-cover rounded-md mb-8"
         />
         <div className="prose max-w-none text-lg text-gray-800 space-y-1" dangerouslySetInnerHTML={{ __html: post.content }} />
         

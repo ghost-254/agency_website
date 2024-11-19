@@ -127,8 +127,8 @@ export default function BlogPage() {
                   src={post.imageUrl}
                   alt={post.title}
                   width={600}
-                  height={400}
-                  className="w-full h-48 object-cover"
+                  height={500}
+                  className="w-full h-auto object-cover"
                 />
                 <div className="p-4">
                   <div className="text-sm text-gray-500 mb-2">
