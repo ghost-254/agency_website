@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { CheckCircle, Play, Pause, Volume2 } from "lucide-react"
 import { useInView } from "react-intersection-observer"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -36,14 +37,7 @@ const Goals = () => {
   // Play audio when section comes into view (only if not played before)
   useEffect(() => {
     if (inView && !hasPlayed && audioRef.current) {
-      // Attempt to play only if the user has interacted with the document
-      const playPromise = audioRef.current.play()
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay was prevented, handle the error gracefully
-          console.log("Autoplay was prevented. User interaction is required.")
-        })
-      }
+      audioRef.current.play()
       setIsPlaying(true)
       setHasPlayed(true)
     }
@@ -51,18 +45,17 @@ const Goals = () => {
 
   // Update playing state when audio ends
   useEffect(() => {
-    const audioElement = audioRef.current
     const handleEnded = () => {
       setIsPlaying(false)
     }
 
-    if (audioElement) {
-      audioElement.addEventListener("ended", handleEnded)
+    if (audioRef.current) {
+      audioRef.current.addEventListener("ended", handleEnded)
     }
 
     return () => {
-      if (audioElement) {
-        audioElement.removeEventListener("ended", handleEnded)
+      if (audioRef.current) {
+        audioRef.current.removeEventListener("ended", handleEnded)
       }
     }
   }, [])
@@ -190,3 +183,4 @@ const Goals = () => {
 }
 
 export default Goals
+
