@@ -102,12 +102,6 @@ const Footer = () => {
                   LinkedIn
                 </FooterLink>
               </li>
-              <li>
-                <FooterLink href="https://www.facebook.com/people/Outreach-Connect/61565800443220/" external>
-                  <Facebook className="h-5 w-5 text-accent mr-2" />
-                  Facebook
-                </FooterLink>
-              </li>
             </ul>
           </div>
         </div>
